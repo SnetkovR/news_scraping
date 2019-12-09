@@ -1,5 +1,7 @@
 import requests
 
+from logger.logger import LogDecorator
+
 
 class Requester:
     """This is a class for making http requests"""
@@ -15,6 +17,7 @@ class Requester:
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:45.0) Gecko/20100101 Firefox/45.0'
             }
 
+    @LogDecorator()
     def get(self, url):
         """
         Get request

@@ -1,7 +1,7 @@
 import copy
 
 from bs4 import BeautifulSoup
-
+from logger.logger import LogDecorator
 from utils import concatenate
 
 
@@ -46,6 +46,7 @@ class TextParser:
     def text(self, value):
         self._text += value
 
+    @LogDecorator()
     def parse(self, page):
         """Function for parse html page"""
         soup = BeautifulSoup(page, 'html.parser')
