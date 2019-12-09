@@ -5,12 +5,13 @@ def find_all(a_str, sub):
     start = 0
     while True:
         start = a_str.find(sub, start)
-        if start == -1: return
+        if start == -1:
+            return
         yield start
         start += len(sub)
 
 
-def create_dirs(url, dir=os.getcwd()):
+def create_dirs(url, _dir=os.getcwd()):
     protocols = ["http://", "https://"]
 
     for protocol in protocols:
@@ -29,7 +30,7 @@ def create_dirs(url, dir=os.getcwd()):
     if "." in url_split[-1]:
         url_split[-1] = url_split[-1][:url_split[-1].find(".")]
 
-    path = dir
+    path = _dir
     for name in url_split[:-1]:
         path += "\\" + name
         if not os.path.exists(path):
@@ -38,8 +39,8 @@ def create_dirs(url, dir=os.getcwd()):
     return os.path.join(path, url_split[-1])
 
 
-def concatenate(list):
-    list = [str(elem) for elem in list]
-    res = " ".join(list)
+def concatenate(lst):
+    lst = [str(elem) for elem in lst]
+    res = " ".join(lst)
 
     return res
