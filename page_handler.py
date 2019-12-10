@@ -12,7 +12,6 @@ class PageHandler:
 
         :param requester: class that is responsible for web page requests
         :param parser: class that is responsible for web page requests
-        :param logger: instance of the logging
         :param scrap_config: config with info about template
         """
         self.requester = requester
