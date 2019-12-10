@@ -2,10 +2,10 @@ import functools
 import sys
 import logging.config
 
-logger = logging.getLogger()
+from helpers.singleton import SingletonType
 
 
-class LogDecorator:
+class LogDecorator(object, metaclass=SingletonType):
     def __init__(self):
         logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S',
                             level=logging.DEBUG,
