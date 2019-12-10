@@ -28,9 +28,12 @@ class PageHandler:
         :return: text from a web page in template format
         """
         response = self.__take_page(url)
-
         parser = self.parser(self.config)
-        parser.parse(response.text)
+
+        if getattr(self.parser, "parse"):
+            parser.parse(response.text)
+        else:
+            raise NotImplementedError("The parser does not match the declared interface")
 
         return parser.text
 
@@ -43,7 +46,10 @@ class PageHandler:
         :return: response from server
         """
         requester = self.requester()
-        response = requester.get(url)
+        if getattr(self.requester, "get"):
+            response = requester.get(url)
+        else:
+            raise NotImplementedError("The requester does not match the declared interface")
 
         if response.status_code != 200:
             raise ResponseException({"message": f"Response code {response.status_code}."})
